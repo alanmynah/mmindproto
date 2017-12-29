@@ -22,35 +22,36 @@ namespace mastermindProto
         {
             var KnuthGuess = 1122;
             this.GuessList.Add(KnuthGuess);
-//            if (combination != KnuthGuess)
-//            {
-//                FindSolution(combination);
-//            }
+            if (combination != KnuthGuess)
+            {
+                FindSolution(combination);
+            }
 
             this.NumberOfSteps = GuessList.Count;
         }
 
-//        public void FindSolution(int combination)
-//        {
-//            var set = FiveStepAlgorithm.CreatePermutationSet();
-//            var response = FiveStepAlgorithm.GetPegsFor(1122, combination);
-//            set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
-//            var guess = FiveStepAlgorithm.GetNewGuess();
-//
-//            while (GuessList.Count < 12 && guess != combination)
-//            {
-//                response = FiveStepAlgorithm.GetPegsFor(guess, combination);
-//
-//                if (response == "wwww")
-//                {
-//                    this.GuessList.Add(Guess);
-//                }
-//                else
-//                {
-//                    set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
-//                    this.GuessList.Add(Guess);
-//                }
-//            }
-//        }
+        public void FindSolution(int combination)
+        {
+            var set = FiveStepAlgorithm.CreatePermutationSet();
+            var response = FiveStepAlgorithm.GetPegsFor(1122, combination);
+            set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
+            var guess = FiveStepAlgorithm.GetNewGuess(set);
+            this.GuessList.Add(guess);
+
+            while (GuessList.Count < 12 && guess != combination)
+            {
+                response = FiveStepAlgorithm.GetPegsFor(guess, combination);
+                if (response == "bbbb")
+                {
+                    break;
+                }
+                else
+                {
+                    set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
+                    guess = FiveStepAlgorithm.GetNewGuess(set);
+                    this.GuessList.Add(guess);
+                }
+            }
+        }
     }
 }

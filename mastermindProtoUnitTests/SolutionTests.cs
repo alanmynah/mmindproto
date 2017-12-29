@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Shouldly;
 using Xunit;
 using mastermindProto;
@@ -35,6 +36,13 @@ namespace mastermindProtoUnitTests
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1111, 1111), "bbbb");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1233, 3312), "wwwn"); // would this be right though? Think so...
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(4421, 4413), "bbwn");
+        }
+
+        [Fact]
+        public void GetsNewGuess()
+        {
+            var set = new List<int> { };
+            Assert.Equal(FiveStepAlgorithm.GetNewGuess(set), 1234);
         }
     }
 }
