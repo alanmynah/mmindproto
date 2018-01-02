@@ -54,13 +54,14 @@ namespace mastermindProtoUnitTests
             var expected = new List<int> { 1111 };
 
             Assert.Equal(expected, set);
+            // this looks like a lonely test, how to expand? 
         }
 
-        [Fact]
-        public void GetsNewGuess()
-        {
-            var set = new List<int> { };
-            Assert.Equal(FiveStepAlgorithm.GetNewGuess(set), 1234);
-        }
+//        [Fact]
+//        public void GetsNewGuess()
+//        {
+//            var set = new List<int> { };
+//            Assert.Equal(FiveStepAlgorithm.GetNewGuess(set), 1234);
+//        }
     }
 }

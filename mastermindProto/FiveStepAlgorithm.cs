@@ -104,7 +104,7 @@ namespace mastermindProto
 //            gives an example showing that in some cases no member of S will be among the highest 
 //            scoring guesses and thus the guess cannot win on the next turn, yet will be 
 //            necessary to assure a win in five.)
-            return 1234;
+            return set[0];
         }
     }
 }
