@@ -68,11 +68,11 @@ namespace mastermindProto
             
         }
 
-        public static void RemoveOptionsBasedOnResponse(string response, int guess, List<int> set)
+        public static List<int> RemoveOptionsBasedOnResponse(string response, int guess, List<int> set)
         {
             //Remove from S any code that would not give the same response if it 
             //(the guess) were the code.
-
+            var newSet = new List<int> (set);
             //So effectively:
             //We made a guess 1122 (or any other) and got a response. 
             //Let's get the pegs for all of the options in set S,
@@ -81,10 +81,11 @@ namespace mastermindProto
 
                 if (GetPegsFor(guess, set[i]) != response)
                 {
-                    set.Remove(set[i]);
+                    newSet.Remove(set[i]);
                 }
             }
-            set.Remove(guess);
+            newSet.Remove(guess);
+            return newSet;
         }
 
         public static int GetNewGuess(List<int> set)
