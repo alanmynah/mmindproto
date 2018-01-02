@@ -18,6 +18,8 @@ namespace mastermindProto
 
         public int Guess { get; set; }
 
+        public List<int> MiniMaxSet = FiveStepAlgorithm.CreatePermutationSet();
+
         public void PrintSolution(int combination)
         {
             var KnuthGuess = 1122; //initial best guess according to the algorithm
@@ -37,6 +39,9 @@ namespace mastermindProto
             var response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
             set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
             Guess = FiveStepAlgorithm.GetNewGuess(set);
+            //Remove guess from minimax set, so it's not obscuring the algorithm later for a 
+            // GetNewGuess method. 
+            MiniMaxSet.Remove(Guess);
             this.GuessList.Add(Guess);
 
             while (GuessList.Count < 12 && Guess != combination)

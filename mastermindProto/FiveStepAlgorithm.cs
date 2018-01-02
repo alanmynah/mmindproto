@@ -89,12 +89,19 @@ namespace mastermindProto
 
         public static int GetNewGuess(List<int> set)
         {
-//            Apply minimax technique to find a next guess as follows: 
-//            For each possible guess, that is, any unused code of the 1296 not just those in S, 
-//            calculate how many possibilities in S would be eliminated for each possible 
-//            colored/white peg score. The score of a guess is the minimum number of possibilities 
-//            it might eliminate from S. A single pass through S for each unused code of the 1296 
-//            will provide a hit count for each colored/white peg score found; the 
+            //For any unused code of the 1296 calculate how many possibilities in S 
+            //would be eliminated for each possible colored/white peg score. 
+            var hitCounter = new Dictionary<int, int>() { };
+            //The score of a guess is the minimum number of possibilities 
+            //it might eliminate from S. 
+
+            //A single pass through S for each unused code of the 1296 
+            //will provide a hit count for each colored/white peg score found; 
+            foreach (var number in set)
+            {
+                var hitcount = 0;
+                hitCounter.Add(number, hitcount);    
+            }
 //            colored/white peg score with the highest hit count will eliminate the fewest 
 //            possibilities; calculate the score of a guess by using 
 //            "minimum eliminated" = "count of elements in S" - (minus) "highest hit count". 
