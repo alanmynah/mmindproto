@@ -78,7 +78,6 @@ namespace mastermindProto
             //Let's get the pegs for all of the options in set S,
             for (var i = 0; i < set.Count; i++)
             {
-
                 if (GetPegsFor(guess, set[i]) != response)
                 {
                     newSet.Remove(set[i]);

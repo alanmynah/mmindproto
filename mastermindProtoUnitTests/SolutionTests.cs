@@ -37,19 +37,21 @@ namespace mastermindProtoUnitTests
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1233, 3312), "wwwn"); // would this be right though? Think so... not sure about the Mastermind rules themselves. 
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(4421, 4413), "bbwn");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 1111), "bbnn");
+            Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 2211), "wwnn");
         }
 
         [Fact]
         public void RemovesOptions()
         {
-            var combination = 5666;
-            var guess = 6666;
-            var set = new List<int> {1234, 1235, 6666, 5666};
+            var combination = 1111;
+            var guess = 1122;
+            var set = new List<int> { 1111, 1112, 1122, 1234, 2345 };
+
             var response = FiveStepAlgorithm.GetPegsFor(guess, combination);
 
-            FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, guess, set);
+            set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, guess, set);
 
-            var expected = new List<int> { 6666, 5666 };
+            var expected = new List<int> { 1111 };
 
             Assert.Equal(expected, set);
         }

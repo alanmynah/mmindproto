@@ -35,7 +35,7 @@ namespace mastermindProto
         {
             var set = FiveStepAlgorithm.CreatePermutationSet();
             var response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
-            FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
+            set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
             Guess = FiveStepAlgorithm.GetNewGuess(set);
             this.GuessList.Add(Guess);
 
@@ -48,7 +48,7 @@ namespace mastermindProto
                 }
                 else
                 {
-                    FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
+                    set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
                     Guess = FiveStepAlgorithm.GetNewGuess(set);
                     this.GuessList.Add(Guess);
                 }
