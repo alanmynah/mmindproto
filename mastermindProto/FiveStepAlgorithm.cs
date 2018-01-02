@@ -33,6 +33,7 @@ namespace mastermindProto
             //split guess and combination into same sized int arrays
             int[] guessArray = Array.ConvertAll(guess.ToString().ToArray(), x => (int)x - 48);
             int[] combinationArray = Array.ConvertAll(combination.ToString().ToArray(), x => (int)x - 48);
+            List<int> ignoreArray = new List<int> {};
             
             //take combination and take digits from guess and get the exact matches in combination
             for (var i = 0; i < guessArray.Length; i++)
@@ -43,6 +44,7 @@ namespace mastermindProto
                     //add to arr in the same position [b, n, n, n]
                     feedbackPegs[i] = "b";
                     //replace exact match in combination with "0"
+                    ignoreArray.Add(combinationArray[i]);
                     combinationArray[i] = 0;
                     //now 1234 with 1122 guess will look like 0234 
                 }
@@ -53,7 +55,7 @@ namespace mastermindProto
             //and check if they are in 0234
             foreach (var member in uniqueMembersOfGuessArray)
             {
-                if (combinationArray.Contains(member))
+                if (combinationArray.Contains(member) && !ignoreArray.Contains(member))
                 {
                     //for every match, take array and change the first "n" to ["w"]
                     var nToReplace = Array.IndexOf(feedbackPegs, "n");
@@ -64,6 +66,25 @@ namespace mastermindProto
             //return string
             return String.Join(string.Empty, feedbackPegs);
             
+        }
+
+        public static void RemoveOptionsBasedOnResponse(string response, int guess, List<int> set)
+        {
+            //Remove from S any code that would not give the same response if it 
+            //(the guess) were the code.
+
+            //So effectively:
+            //We made a guess 1122 (or any other) and got a response. 
+            //Let's get the pegs for all of the options in set S,
+            for (var i = 0; i < set.Count; i++)
+            {
+
+                if (GetPegsFor(guess, set[i]) != response)
+                {
+                    set.Remove(set[i]);
+                }
+            }
+            set.Remove(guess);
         }
 
         public static int GetNewGuess(List<int> set)

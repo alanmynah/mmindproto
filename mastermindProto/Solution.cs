@@ -20,9 +20,10 @@ namespace mastermindProto
 
         public void PrintSolution(int combination)
         {
-            var KnuthGuess = 1122;
-            this.GuessList.Add(KnuthGuess);
-            if (combination != KnuthGuess)
+            var KnuthGuess = 1122; //initial best guess according to the algorithm
+            Guess = KnuthGuess;
+            this.GuessList.Add(Guess);
+            if (combination != Guess)
             {
                 FindSolution(combination);
             }
@@ -33,23 +34,23 @@ namespace mastermindProto
         public void FindSolution(int combination)
         {
             var set = FiveStepAlgorithm.CreatePermutationSet();
-            var response = FiveStepAlgorithm.GetPegsFor(1122, combination);
-            set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
-            var guess = FiveStepAlgorithm.GetNewGuess(set);
-            this.GuessList.Add(guess);
+            var response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
+            FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
+            Guess = FiveStepAlgorithm.GetNewGuess(set);
+            this.GuessList.Add(Guess);
 
-            while (GuessList.Count < 12 && guess != combination)
+            while (GuessList.Count < 12 && Guess != combination)
             {
-                response = FiveStepAlgorithm.GetPegsFor(guess, combination);
+                response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
                 if (response == "bbbb")
                 {
                     break;
                 }
                 else
                 {
-                    set = FiveStepAlgorithm.RemoveOptionsBasedOn(response, set);
-                    guess = FiveStepAlgorithm.GetNewGuess(set);
-                    this.GuessList.Add(guess);
+                    FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
+                    Guess = FiveStepAlgorithm.GetNewGuess(set);
+                    this.GuessList.Add(Guess);
                 }
             }
         }
