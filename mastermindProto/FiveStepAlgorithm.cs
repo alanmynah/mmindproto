@@ -91,18 +91,21 @@ namespace mastermindProto
         {
             //For any unused code of the 1296 calculate how many possibilities in S 
             //would be eliminated for each possible colored/white peg score. 
-            var guessScore = new Dictionary<int, int>() {};
+            //var guessScore = new Dictionary<int, int>() {};
             //The score of a guess is the minimum number of possibilities 
             //it might eliminate from S. 
 
             //A single pass through S for each unused code of the 1296 
-            //will provide a hit count for each colored/white peg score found; 
-            foreach (var number in set)
-            {
-                var hitcount = 0;
-                guessScore.Add(number, hitcount);    
-            }
-//            colored/white peg score with the highest hit count will eliminate the fewest 
+            //foreach (var number in set)
+            //{
+                //will provide a hit count for each colored/white peg score found; 
+              //  var some = 0;
+
+                //calculate the score of a guess by using 
+                //"minimum eliminated" = "count of elements in S" - (minus) "highest hit count". 
+                //guessScore.Add(number, some);    
+            //}
+//            a colored/white peg score with the highest hit count will eliminate the fewest 
 //            possibilities; calculate the score of a guess by using 
 //            "minimum eliminated" = "count of elements in S" - (minus) "highest hit count". 
 //            From the set of guesses with the maximum score, select one as the next guess, 
@@ -112,6 +115,11 @@ namespace mastermindProto
 //            scoring guesses and thus the guess cannot win on the next turn, yet will be 
 //            necessary to assure a win in five.)
             return set[0];
+        }
+
+        public static void GetHitCount()
+        {
+            
         }
     }
 }

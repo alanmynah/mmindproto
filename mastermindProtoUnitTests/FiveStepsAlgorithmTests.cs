@@ -35,6 +35,7 @@ namespace mastermindUnitTests
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(4421, 4413), "bbwn");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 1111), "bbnn");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 2211), "wwnn");
+            Assert.Equal(FiveStepAlgorithm.GetPegsFor(3523, 2532), "wbwn");
         }
 
         [Fact]
