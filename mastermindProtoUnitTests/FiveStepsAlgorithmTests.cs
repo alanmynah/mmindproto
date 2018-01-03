@@ -1,14 +1,17 @@
-using System;
 using System.Collections.Generic;
-using Shouldly;
 using Xunit;
 using mastermindProto;
-using Xunit.Sdk;
 
-namespace mastermindProtoUnitTests
+namespace mastermindUnitTests
 {
-    public class FiveStepsAlgorithmTests
+    public class FiveStepAlgorithmTests
     {
+        [Fact]
+        public void GetPegsForReturnsStringFourCharactersLong()
+        {
+            Assert.IsType<string>(FiveStepAlgorithm.GetPegsFor(1122, 1234));
+        }
+
         [Fact]
         public void CanCreatePermutationSet()
         {
@@ -18,12 +21,6 @@ namespace mastermindProtoUnitTests
             var actual = set.Count;
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void GetPegsForReturnsStringFourCharactersLong()
-        {
-           Assert.IsType<string>(FiveStepAlgorithm.GetPegsFor(1122, 1234));
         }
 
         [Fact]
@@ -38,6 +35,7 @@ namespace mastermindProtoUnitTests
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(4421, 4413), "bbwn");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 1111), "bbnn");
             Assert.Equal(FiveStepAlgorithm.GetPegsFor(1122, 2211), "wwnn");
+            Assert.Equal(FiveStepAlgorithm.GetPegsFor(3523, 2532), "wbwn");
         }
 
         [Fact]
