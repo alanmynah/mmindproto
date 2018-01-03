@@ -23,10 +23,10 @@ namespace mastermindProto
                 // Send how many turns it took to solve
                 Console.WriteLine($"It took {solution.NumberOfSteps} steps to solve");
 
-                //foreach step 
-                    //print array of colours originally selected by the algorithm
+                // foreach step 
                 for (int i = 0; i < solution.GuessList.Count; i++)
-                {                
+                {   
+                    // print array of colours originally selected by the algorithm  
                     Console.WriteLine($"Guess number {i+1} was {solution.GuessList[i]}"); 
                 }
 

@@ -87,11 +87,11 @@ namespace mastermindProto
             return newSet;
         }
 
-        public static int GetNewGuess(List<int> set)
+        public static int GetNewGuess(List<int> set, List<int> minimaxSet)
         {
             //For any unused code of the 1296 calculate how many possibilities in S 
             //would be eliminated for each possible colored/white peg score. 
-            var hitCounter = new Dictionary<int, int>() { };
+            var guessScore = new Dictionary<int, int>() {};
             //The score of a guess is the minimum number of possibilities 
             //it might eliminate from S. 
 
@@ -100,7 +100,7 @@ namespace mastermindProto
             foreach (var number in set)
             {
                 var hitcount = 0;
-                hitCounter.Add(number, hitcount);    
+                guessScore.Add(number, hitcount);    
             }
 //            colored/white peg score with the highest hit count will eliminate the fewest 
 //            possibilities; calculate the score of a guess by using 

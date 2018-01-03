@@ -38,8 +38,8 @@ namespace mastermindProto
             var set = FiveStepAlgorithm.CreatePermutationSet();
             var response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
             set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
-            Guess = FiveStepAlgorithm.GetNewGuess(set);
-            //Remove guess from minimax set, so it's not obscuring the algorithm later for a 
+            Guess = FiveStepAlgorithm.GetNewGuess(set, MiniMaxSet);
+            // Remove guess from minimax set, so it's not obscuring the algorithm later for a 
             // GetNewGuess method. 
             MiniMaxSet.Remove(Guess);
             this.GuessList.Add(Guess);
@@ -47,14 +47,10 @@ namespace mastermindProto
             while (GuessList.Count < 12 && Guess != combination)
             {
                 response = FiveStepAlgorithm.GetPegsFor(Guess, combination);
-                if (response == "bbbb")
-                {
-                    break;
-                }
-                else
+                if (response != "bbbb")
                 {
                     set = FiveStepAlgorithm.RemoveOptionsBasedOnResponse(response, Guess, set);
-                    Guess = FiveStepAlgorithm.GetNewGuess(set);
+                    Guess = FiveStepAlgorithm.GetNewGuess(set, MiniMaxSet);
                     this.GuessList.Add(Guess);
                 }
             }
